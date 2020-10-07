@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js"></script>
+    <meta charset="utf-8">
+    <title>Laboratorio1-Tarea3</title>
+
+    <script>
+
+        $("document").ready(function () {
+            $("#calcBtn").click(calcular);
+            $("#resetBtn").click(reset);
+        });
+
+        function calcular(){
+
+            var resUser = $("#resUser").val();
+            var exp = $("#expr").val();
+            var r = math.eval(exp);
+
+            if (resUser == r) {
+                $("#esCorrecto").html("Correcto");
+                $("#esCorrecto").css("background-color","green");
+                $("#imgRes").attr("src", "https://www.kasandbox.org/programming-images/creatures/Hopper-Cool.png");
+            } else {
+                $("#esCorrecto").html("Incorrecto: el resultado no coincide");
+                $("#esCorrecto").css("background-color","red");
+                $("#imgRes").attr("src", "https://www.kasandbox.org/programming-images/avatars/old-spice-man-blue.png");
+            }
+
+        }
+
+        function reset() {
+            $("#form")[0].reset();
+        }
+
+    </script>
+</head>
+
+<body>
+    <div align="center" style="border-style: ridge;">
+        <form id="form">
+            <h1 align="center"> Calculadora</h1>
+
+            <p>Introduce la expresion a evaluar:
+                <input id="expr" size="7">
+            </p>
+
+            <p>Introduce el resultado:
+                <input id="resUser">
+            </p>
+
+
+            <button type="button" id="calcBtn">Comprobar</button>
+            <button type="button" id="resetBtn">Reset</button>
+            <h3 id="esCorrecto"></h3>
+            <img id="imgRes">
+
+
+        </form>
+    </div>
+
+
+</body>
+
+</html>

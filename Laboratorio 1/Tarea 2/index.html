@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Laboratorio1-Tarea1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+
+        $("document").ready(function () {
+            $("#calcBtn").click(calcular);
+            $("#resetBtn").click(reset);
+        });
+
+
+
+        function calcular() {
+
+
+            var valor1 = parseFloat($("#valor1").val());
+            var valor2 = parseFloat($("#valor2").val());
+
+            var op = $("#op").val();
+            var resUser = parseFloat($("#resUser").val());
+            var r;
+
+            if (op == "+") r = valor1 + valor2;
+            else if (op == "-") r = valor1 - valor2;
+            else if (op == "*") r = valor1 * valor2;
+            else r = valor1 / valor2;
+
+
+            if (!esNumero()) {
+                $("#esCorrecto").html("Incorrecto: Los valores no son numeros");
+                $("#esCorrecto").css("background-color","red");
+                $("#imgRes").attr('src', 'https://www.kasandbox.org/programming-images/avatars/old-spice-man-blue.png');
+
+            } else if (resUser == r) {
+                $("#esCorrecto").html("Correcto");
+                $("#esCorrecto").css("background-color","green");
+                $("#imgRes").attr("src", "https://www.kasandbox.org/programming-images/creatures/Hopper-Cool.png");
+            } else {
+                $("#esCorrecto").html("Incorrecto: el resultado no coincide");
+                $("#esCorrecto").css("background-color","red");
+                $("#imgRes").attr("src", "https://www.kasandbox.org/programming-images/avatars/old-spice-man-blue.png");
+            }
+
+
+        }
+
+        function esNumero() {
+            var esNumero = new RegExp('^[0-9]+(\.[0-9]+)?$');
+
+            var valor1 = $("#valor1").val();
+            var valor2 = $("#valor2").val();
+            if (esNumero.test(valor1) && esNumero.test(valor2)) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
+        function reset() {
+            $("#form")[0].reset();
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+    <div align="center" style="border-style: ridge;">
+        <form id="form">
+            <h1 align="center"> Calculadora</h1>
+
+            <p>Introduce el primer valor:
+                <input id="valor1" size="7">
+            </p>
+
+            <p> Elige el operador:
+                <select id="op">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                </select>
+            </p>
+
+            <p>Introduce el segundo valor:
+                <input id="valor2" size="7">
+            </p>
+
+            <p>Introduce el resultado:
+                <input id="resUser">
+            </p>
+
+
+            <button type="button" id="calcBtn">Comprobar</button>
+            <button type="button" id="resetBtn">Reset</button>
+            <h3 id="esCorrecto"></h3>
+            <img id="imgRes">
+
+
+        </form>
+    </div>
+
+
+</body>
+
+</html>
